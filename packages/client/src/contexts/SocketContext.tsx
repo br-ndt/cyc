@@ -7,6 +7,7 @@ import {
 } from "react";
 import { io, Socket } from "socket.io-client";
 import { Euler, Vector3 } from "three";
+import { IWorldState } from "../types";
 
 interface ISocketContext {
   cubeTransform: {
@@ -50,23 +51,24 @@ export default function SocketProvider({ children }: SocketProviderProps) {
       setIsConnected(false);
     }
 
-    function onCubeTransform(newTransform: any) {
+    function onWorldState(newState: IWorldState) {
+      const transform = newState.cubeState.transform;
       setCubeTransform({
-        position: new Vector3(...newTransform.position),
+        position: new Vector3(...transform.position),
         rotation: new Euler().setFromVector3(
-          new Vector3(...newTransform.rotation)
+          new Vector3(...transform.rotation)
         ),
       });
     }
 
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
-    socket.on("cubeTransform", onCubeTransform);
+    socket.on("worldState", onWorldState);
 
     return () => {
       socket.off("connect", onConnect);
       socket.off("disconnect", onDisconnect);
-      socket.off("cubeTransform", onCubeTransform);
+      socket.off("worldState", onWorldState);
     };
   }, []);
 

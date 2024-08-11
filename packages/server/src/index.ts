@@ -4,11 +4,9 @@ import url from "url";
 
 import createExpressApp from "./boot/express.js";
 import createSocketIo from "./boot/socket.js";
-
-interface Transform {
-  position: number[];
-  rotation: number[];
-}
+import beginBroadcastTick from "./boot/tick.js";
+import createWorldHelper from "./boot/world.js";
+import cubeRotate from "./callbacks/cubeRotate.js";
 
 dotenv.config();
 const __filename = url.fileURLToPath(import.meta.url);
@@ -18,7 +16,9 @@ const PORT = process.env.NODE_ENV === "development" ? 3000 : 6869;
 
 const express = createExpressApp(__filename);
 const server = createServer(express);
-const io = createSocketIo(server);
+const world = createWorldHelper();
+const io = createSocketIo(server, world);
+beginBroadcastTick(io, world, 10, [cubeRotate]);
 
 server.listen(PORT, () => {
   console.log(`server started at ${HOST}:${PORT}`);
