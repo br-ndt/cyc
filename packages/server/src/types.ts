@@ -6,6 +6,7 @@ interface ITransform {
 export interface IWorldState {
   cubeState: {
     delta: number;
+    isHovered: boolean;
     transform: ITransform;
   };
 }

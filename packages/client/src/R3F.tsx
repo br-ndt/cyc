@@ -10,7 +10,8 @@ export default function R3F({}) {
 
   return (
     <div className={styles.canvasContainer}>
-      <Canvas shadows camera={{ position: [1, 20, 4] }}>
+      <Canvas shadows camera={{ position: [1, 20, 4] }} color="black">
+        <color attach="background" args={["#000"]} />
         <ambientLight intensity={0.1} />
         <directionalLight
           castShadow
@@ -52,7 +53,7 @@ export default function R3F({}) {
           target-position={cubeTransform.position}
           color="purple"
           position={[-1, 2, -3]}
-          intensity={4.2}
+          intensity={0.8}
           shadow-camera-left={-70}
           shadow-camera-bottom={-70}
           shadow-camera-top={70}
@@ -61,9 +62,9 @@ export default function R3F({}) {
         />
         <Box />
         <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[50, 50]} />
+          <planeGeometry args={[1000, 1000]} />
           <shadowMaterial color={"#171717"} transparent opacity={0.4} />
-          <meshStandardMaterial />
+          <meshStandardMaterial color={"#2b2b2b"} />
         </mesh>
         <OrbitControls />
       </Canvas>

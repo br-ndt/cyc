@@ -1,9 +1,11 @@
 # cyc-client
 
-the front-end client for `cyc`.
+the front-end client for `cyc`
 
-run from here with
+## usage
 
-```
+```bash
 npm run dev
 ```
+
+run alone, the cube will not animate

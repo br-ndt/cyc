@@ -5,6 +5,7 @@ export default function createWorld(): IWorld {
     state: {
       cubeState: {
         delta: 0.01,
+        isHovered: false,
         transform: {
           position: [0, 4, 0],
           rotation: [0, 0, 0],
