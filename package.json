@@ -1,0 +1,32 @@
+{
+  "name": "cyc",
+  "version": "0.1.0",
+  "description": "three JS and socket.io",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "set NODE_ENV=development&& concurrently --kill-others \"npm run dev:cyc-server\" \"npm run dev:cyc-client\"",
+    "start": "set NODE_ENV=production&& concurrently --kill-others \"npm run build:cyc-client\" \"npm run start:cyc-server\"",
+    "dev:cyc-client": "cd packages/client && npm run dev",
+    "dev:cyc-server": "cd packages/server && npm run dev",
+    "start:cyc-client": "cd packages/client && npm run start",
+    "start:cyc-server": "cd packages/server && npm run start",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/br-ndt/cyc.git"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "backend"
+  ],
+  "author": "br-ndt",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
