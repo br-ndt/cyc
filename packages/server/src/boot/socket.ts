@@ -17,10 +17,20 @@ export default function createSocketIo(server: HttpServer, world: IWorld) {
     console.log("a user connected:", socket.id);
 
     socket.on("hoverChange", (isHover) => {
-      const newWorld = world.getState();
-      newWorld.cubeState.isHovered = isHover;
-      world.setState(newWorld);
-      io.emit("cubeHover", newWorld.cubeState.isHovered);
+      const newWorld = world.getData().getState();
+      newWorld.cube.isHovered = isHover;
+      world.getData().setState(newWorld);
+      io.emit("cubeHover", isHover);
+    });
+
+    socket.on("resetBox", () => {
+      world.data.physics.bodies[2].position.set(0, 10, 0);
+      world.data.physics.bodies[2].velocity.set(0, 0, 0);
+    });
+
+    socket.on("resetSphere", () => {
+      world.data.physics.bodies[1].position.set(0, 10, 0);
+      world.data.physics.bodies[1].velocity.set(0, 0, 0);
     });
   });
 

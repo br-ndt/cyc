@@ -4,8 +4,22 @@ interface ITransform {
 }
 
 export interface IWorldState {
-  cubeState: {
+  delta: number;
+  cube: {
     isHovered: boolean;
     transform: ITransform;
   };
+}
+
+export interface Triplet {
+  x: number;
+  y: number;
+  z: number;
+}
+
+export interface Quad {
+  w: number;
+  x: number;
+  y: number;
+  z: number;
 }

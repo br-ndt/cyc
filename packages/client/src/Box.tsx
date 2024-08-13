@@ -1,22 +1,12 @@
-import { useRef } from "react";
-import { Mesh } from "three";
+import { useBox } from "@react-three/cannon";
 
-import { useSocket } from "./contexts/SocketContext";
+import PhysicsShape, { PhysicsShapeProps } from "./PhysicsShape";
 
-export default function Box() {
-  const { cubeTransform, isHover, setHover } = useSocket();
-  const boxRef = useRef<Mesh>(null!);
+export default function Box(props: Omit<PhysicsShapeProps, "cannonCallback">) {
   return (
-    <mesh
-      onPointerEnter={() => setHover(true)}
-      onPointerLeave={() => setHover(false)}
-      ref={boxRef}
-      castShadow
-      position={cubeTransform.position}
-      rotation={cubeTransform.rotation}
-    >
-      <boxGeometry args={[2, 2, 2]} />
-      {isHover ? <meshStandardMaterial /> : <meshNormalMaterial />}
-    </mesh>
+    <PhysicsShape {...props} cannonCallback={useBox}>
+      <boxGeometry args={props.args} />
+      <meshStandardMaterial color={"#2b2b2b"} />
+    </PhysicsShape>
   );
 }
