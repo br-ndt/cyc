@@ -1,6 +1,6 @@
 {
   "name": "cyc-server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "express server for cyc",
   "main": "src/index.ts",
   "type": "module",
