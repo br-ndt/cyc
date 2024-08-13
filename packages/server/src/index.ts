@@ -4,7 +4,7 @@ import url from "url";
 
 import createExpressApp from "./boot/express.js";
 import createSocketIo from "./boot/socket.js";
-import beginBroadcastTick from "./boot/tick.js";
+import { worldStep } from "./boot/tick.js";
 import createWorldHelper from "./boot/world.js";
 import cubeRotate from "./callbacks/cubeRotate.js";
 
@@ -18,7 +18,7 @@ const express = createExpressApp(__filename);
 const server = createServer(express);
 const world = createWorldHelper();
 const io = createSocketIo(server, world);
-beginBroadcastTick(io, world, 10, [cubeRotate]);
+worldStep(io, world, 5, [cubeRotate]);
 
 server.listen(PORT, () => {
   console.log(`server started at ${HOST}:${PORT}`);

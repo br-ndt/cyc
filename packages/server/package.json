@@ -1,6 +1,6 @@
 {
   "name": "cyc-server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "express server for cyc",
   "main": "src/index.ts",
   "type": "module",
@@ -12,6 +12,7 @@
   },
   "author": "br-ndt",
   "dependencies": {
+    "cannon-es": "^0.20.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "socket.io": "^4.7.5"

@@ -1,5 +1,3 @@
-/// <reference path="../../../types/api.d.ts" />
-
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
