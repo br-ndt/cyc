@@ -25,7 +25,7 @@ interface ISocketContext {
 }
 
 interface SocketProviderProps {
-  children: ReactNode[];
+  children: ReactNode | ReactNode[];
 }
 
 export const SocketContext = createContext<ISocketContext>({
