@@ -7,14 +7,17 @@ export interface KeyboardMemo {
 export function useKeyboard() {
   // Create a memoized object to store keyboard state
   const keyboard = useMemo<KeyboardMemo>(() => ({}), []);
+
   // Set the corresponding key in the keyboard object to true when pressed
   const keydown = (e: KeyboardEvent) => {
-    keyboard[e.key !== "Shift" ? e.key.toLocaleLowerCase() : e.key] = true;
+    const key = e.key !== "Shift" ? e.key.toLocaleLowerCase() : e.key;
+    keyboard[key] = true;
   };
 
   // Set the corresponding key in the keyboard object to false when released
   const keyup = (e: KeyboardEvent) => {
-    keyboard[e.key !== "Shift" ? e.key.toLocaleLowerCase() : e.key] = false;
+    const key = e.key !== "Shift" ? e.key.toLocaleLowerCase() : e.key;
+    keyboard[key] = false;
   };
 
   useEffect(() => {
